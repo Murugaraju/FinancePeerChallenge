@@ -29,9 +29,14 @@ class CustomAuthToken(ObtainAuthToken):
 
 
 @api_view(['Get'])
+#this below function is already protect globally with RestFramework authentications
+def logout(request):
 
-def sample(request):
+    
 
-    print("printing the request ob",request)
-    # pdb.set_trace()
-    return Response("sample is working")
+    Token.objects.get(user=request.user).delete()
+    print('print came in ')
+    return Response('Successfully logged out',status=200)
+            
+       
+  
