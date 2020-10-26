@@ -21,7 +21,7 @@ $ serve -s dist
 > Css Framework Vuetify, Antdv
 # OverView
 
-![title](images/login.jpg)
-![title](images/dashboard.jpg)
-![title](images/data.jpg)
+![title](images/login.JPG)
+![title](images/dashboard.JPG)
+![title](images/data.JPG)
 
