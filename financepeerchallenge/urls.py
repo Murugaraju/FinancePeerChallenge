@@ -14,11 +14,28 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from api.views import CustomAuthToken,logout
+from django.urls import path,include
+from api.views import CustomAuthToken,logout,sample,UploadJson,DataModelViewSet
+from rest_framework.routers import DefaultRouter
+from django.views.generic import TemplateView
+from django.conf.urls.static import static
+from django.conf import settings
+
+router=DefaultRouter()
+router.register(r'data',DataModelViewSet)
 
 urlpatterns = [
+    path('',TemplateView.as_view(template_name='index.html')),
     path('admin/', admin.site.urls),
     path('authenticate/',CustomAuthToken.as_view()),
-    path('logout/',logout)
-]
+    path('logout/',logout),
+    path('sample/',sample),
+    path('api/jsonupload',UploadJson.as_view()),
+    path('api/',include(router.urls))
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+
+
+
+
